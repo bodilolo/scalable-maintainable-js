@@ -1,4 +1,2 @@
-scalable-maintainable-js
-========================
-
-ololo
+scalable-maintainable-js-training
+=================================

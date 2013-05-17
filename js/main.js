@@ -8,6 +8,8 @@ requirejs.config({
 });
 
 require(['jquery', 'questions', 'result', 'app'], function($, app){
-    debugger;
+    $.getJSON('questions.json', function(data){
+        alert('Success!');
+    })
     APP.GO();
 });

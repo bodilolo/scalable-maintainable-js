@@ -1,14 +1,17 @@
 var APP = APP || {};
 APP.Questions = (function (window, $) {
     var defaults = {
-        jsonPath: "questions.json"
+        jsonPath: "questions.json",
+        templateId: ''
     };
     function Plugin( element, options ) {
+
         this.element = element;
 
         this.options = $.extend( {}, defaults, options) ;
 
         this.questionsData = [];
+
         this.points = 0;
         this.init();
     }
@@ -129,7 +132,7 @@ APP.Questions = (function (window, $) {
     };
 
     Plugin.prototype._renderQuestion = function(question){
-        var div = $(this.element);
+        /*var div = $(this.element);
         div.html('');
         var questionDiv = $('<div>');
         questionDiv.html('<b>' + question.question + '</b><br/><ul></ul>');
@@ -137,7 +140,12 @@ APP.Questions = (function (window, $) {
         $.each(question.answers, function(i, value){
             questionsUl.append($('<li><input type="radio" name="question" value="'+question.points[i]+'">'+value+'</li>'));
         });
-        div.append(questionDiv);
+        div.append(questionDiv);*/
+        if(!this.cTemplate)
+        {
+            this.cTemplate = _.template($('#q-tmpl').html());
+        }
+        $(this.element).html(this.cTemplate(question));
     };
 
     Plugin.prototype._bindEvents = function(){

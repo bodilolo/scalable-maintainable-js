@@ -58,7 +58,11 @@ APP.Result = (function (window, $) {
     };
 
     Plugin.prototype._render = function(points){
-        $(this.element).html('<b>Баллы:</b>&nbsp;'+points+'<br/><b>Результат:</b>&nbsp;' + this._getStatus(points));
+        /*$(this.element).html('<b>Баллы:</b>&nbsp;'+points+'<br/><b>Результат:</b>&nbsp;' + this._getStatus(points));*/
+        if(!this.cTemplate){
+            this.cTemplate = _.template($('#a-tmpl').html());
+        }
+        $(this.element).html(this.cTemplate({points: points, grade: this._getStatus(points)}));
     };
 
     return {
